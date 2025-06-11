@@ -2,4 +2,5 @@
 .*~
 *.save
 *.gz
+*.git
 /svn
