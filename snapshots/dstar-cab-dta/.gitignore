@@ -1,0 +1,7 @@
+*.id
+*.stamp
+image.tar.gz
+export.tar.gz
+
+cabrc.tar.gz
+dstar

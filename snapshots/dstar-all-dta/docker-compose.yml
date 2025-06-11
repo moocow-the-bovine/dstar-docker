@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+  dta2020:
+    image: "dstar-webhost:2020-10-05"
+    hostname: "dta2020"
+    ports:
+      - "9003:9001"
+      - "9110:8088"
+      - "9111:9096"
+      # dta:51500 , dtak:51501, dtae:51502
+      - "50025-50027:51500-51502"
+      - "803:80"
+    command: "docker/dstar-docker-main"
+#    command: "/bin/bash"
+    environment:
+      SNAPSHOT: "${SNAPSHOT}"
+    volumes:
+      - dstar-cab-de:/opt/dstar-cab-de:ro
+      - dstar-cab-dta:/opt/dstar-cab-dta:ro
+      - dstar-ddc-dtak:/opt/dstar-ddc-dtak:ro
+      - dstar-ddc-dtae:/opt/dstar-ddc-dtae:ro
+      - dstar-ddc-dta:/opt/dstar-ddc-dta:ro
+      - dstar-web-dtak:/opt/dstar-web-dtak:ro
+      - dstar-web-dtae:/opt/dstar-web-dtae:ro
+      - dstar-web-dta:/opt/dstar-web-dta:ro
+      - ./init.d:/opt/dstar-init.d:ro
+      - ./conf.d:/opt/dstar-conf.d:ro
+
+volumes:
+  dstar-cab-de:
+    external:
+      name: "dstar-cab-de-${SNAPSHOT}"
+  dstar-cab-dta:
+    external:
+      name: "dstar-cab-dta-${SNAPSHOT}"
+  dstar-ddc-dtak:
+    external:
+      name: "dstar-ddc-dtak-${SNAPSHOT}"
+  dstar-ddc-dtae:
+    external:
+      name: "dstar-ddc-dtae-${SNAPSHOT}"
+  dstar-ddc-dta:
+    external:
+      name: "dstar-ddc-dta-${SNAPSHOT}"
+  dstar-web-dtak:
+    external:
+      name: "dstar-web-dtak-${SNAPSHOT}"
+  dstar-web-dtae:
+    external:
+      name: "dstar-web-dtae-${SNAPSHOT}"
+  dstar-web-dta:
+    external:
+      name: "dstar-web-dta-${SNAPSHOT}"

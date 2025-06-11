@@ -1,0 +1,9 @@
+*.id
+*.stamp
+image.tar.gz
+export.tar.gz
+corpus.tar.gz
+web.tar.gz
+
+dstar
+ssh

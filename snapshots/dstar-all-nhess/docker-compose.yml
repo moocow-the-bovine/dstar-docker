@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  nhess2020:
+    image: "dstar-webhost:${SNAPSHOT}"
+    hostname: "nhess2020"
+    ports:
+      - "9001:9001"
+      - "9097:9097"
+      - "50000-50001:50000-50001"
+      - "800:80"
+    command: "docker/dstar-docker-main"
+#    command: "/bin/bash"
+    environment:
+      SNAPSHOT: "${SNAPSHOT}"
+    volumes:
+      - dstar-cab-en:/opt/dstar-cab-en:ro
+      - dstar-ddc-nhess:/opt/dstar-ddc-nhess:ro
+      - dstar-web-nhess:/opt/dstar-web-nhess:ro
+      - ./init.d:/opt/dstar-init.d:ro
+      - ./conf.d:/opt/dstar-conf.d:ro
+      
+volumes:
+  dstar-cab-en:
+    external:
+      name: "dstar-cab-en-${SNAPSHOT}"
+  dstar-ddc-nhess:
+    external:
+      name: "dstar-ddc-nhess-${SNAPSHOT}"
+  dstar-web-nhess:
+    external:
+      name: "dstar-web-nhess-${SNAPSHOT}"
