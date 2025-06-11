@@ -1,0 +1,18 @@
+/*-*- Mode: Groovy; coding: utf-8; -*-*/
+
+@Library('dstar-lib') _
+
+dstarDockerPipeline(
+    par:[
+	//-- disable push to registry
+	'pushUrl':"",
+	'pushCredentials':"",
+	nKeep: "2",
+	//:
+    ],
+    env:[
+	DOCKER_ARGS: '--squash=true', // '--squash=true --no-cache=true'
+	NOTIFY_MM_CHANNEL: '#moo-jenkins-test',
+	//:
+    ]
+)

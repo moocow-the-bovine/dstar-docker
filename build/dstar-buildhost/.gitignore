@@ -1,0 +1,13 @@
+*.id
+*.stamp
+job.xml
+image.tar.gz
+export.tar.gz
+
+ssh
+*.tar.gz
+dta-cab
+dta-cab.svn
+dstar
+dstar-web
+snap

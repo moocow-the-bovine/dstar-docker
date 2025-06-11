@@ -1,0 +1,56 @@
+##-*- Mode: GNUmakefile; coding: utf-8; -*-
+##
+## File: docker/common/Makefile
+## Author: Bryan Jurish <jurish@bbaw.de>
+## Description: Makefile for docker images: common stuff
+
+##======================================================================
+## Configuration
+
+## repotag : image repsitory tag
+#repotag ?= 42
+
+include ../config.mak
+
+##======================================================================
+## Rules: top-level
+all: ssh
+
+##--------------------------------------------------------------
+## Rules: local: ssh
+
+ssh_template :=
+
+.PHONY: ssh
+
+##-- pre 2019-10-16
+ssh: ssh/config
+ssh/id_rsa: ssh/config
+ssh/known_hosts: ssh/config
+ssh/config:
+	test \! -e ssh || rm -rf ssh
+	mkdir -p ssh
+	chmod 0700 ssh
+	##
+	##-- ssh: private key
+	#cp -p $(ssh_key)     ssh/id_rsa
+	#cp -p $(ssh_key).pub ssh/id_rsa.pub
+	##
+	##-- ssh: known_hosts
+	:> ssh/known_hosts
+	$(foreach host, $(ssh_hosts), \
+	   ssh-keygen -F "$(host)" >>ssh/known_hosts$(cr))
+	##
+	##-- ssh: config
+	:> ssh/config
+	echo "PreferredAuthentications publickey" >>ssh/config
+	echo "StrictHostKeyChecking false" >>ssh/config
+	#echo "IdentityFile ~/.ssh/id_rsa" >>ssh/config
+	echo "Host *" >>ssh/config
+	echo "  User $(ssh_user)" >>ssh/config
+
+REALCLEAN_DIRS += ssh
+
+##==============================================================
+## Rules: common
+include ../common.mak

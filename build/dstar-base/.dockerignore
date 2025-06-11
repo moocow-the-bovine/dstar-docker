@@ -1,0 +1,13 @@
+Makefile
+Jenkinsfile
+Jenkinsfile.*
+image.tar.gz
+export.tar.gz
+job.xml
+vars
+jenkins*.rc
+registry*.rc
+*.netrc
+*.id
+*.stamp
+*~

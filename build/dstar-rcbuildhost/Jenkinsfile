@@ -1,0 +1,15 @@
+/*-*- Mode: Groovy; coding: utf-8; -*-*/
+
+@Library('dstar-lib') _
+
+dstarDockerPipeline(
+    par:[
+	//pushUrl: 'http://localhost:5000',
+	//pushCredentials: 'local-docker-registry',
+	:
+    ],
+    env:[
+	//DOCKER_ARGS: '--squash=true', // '--squash=true --no-cache=true'
+	:
+    ],
+)

@@ -1,0 +1,76 @@
+/* -*- Mode: C -*- */
+digraph deps {
+  rankdir = RL;
+  rotate = 90;
+  node [shape=rectangle,fontname="Courier"];
+  edge [decorate=0,fontname="Courier"];
+
+  /*-- containers (~ hosts) --*/
+  {
+    node [shape="rectangle",fontname="Courier"];
+    edge [color="blue"];
+
+    dstar_base;
+
+    dstar_runhost;
+    dstar_runhost -> dstar_base;
+
+    dstar_webhost;
+    dstar_webhost -> dstar_runhost;
+
+    dstar_buildhost;
+    dstar_buildhost -> dstar_webhost;
+
+    dstar_rcbuildhost;
+    dstar_rcbuildhost -> dstar_buildhost;
+  }
+
+  /*-- volumes/corpora --*/
+  {
+    node [shape=note,style="filled",fillcolor="#ffeecc"];
+    edge [style=dotted,color="#8b4726"];
+
+    dstar_cab_en;
+      dstar_cab_en -> dstar_runhost;
+    dstar_cab_de;
+      dstar_cab_de -> dstar_runhost;
+    dstar_cab_dta;
+      dstar_cab_dta -> dstar_runhost;
+
+    dstar_ddc_nhess;
+     dstar_ddc_nhess -> dstar_runhost;
+    dstar_ddc_dta;
+     dstar_ddc_dta -> dstar_runhost;
+    dstar_ddc_other [label="dstar_ddc_*",color="blue",fontcolor="blue"];
+     dstar_ddc_other -> dstar_runhost;
+
+    dstar_web_nhess;
+      dstar_web_nhess -> dstar_webhost;
+    dstar_web_dta;
+      dstar_web_dta -> dstar_webhost;
+    dstar_web_other [label="dstar_web_*",color="blue",fontcolor="blue"];
+      dstar_web_other -> dstar_webhost;
+
+    {
+      rank=same; dstar_cab_en; dstar_cab_de; dstar_cab_dta; dstar_ddc_nhess; dstar_ddc_dta; dstar_ddc_other; dstar_web_dta; dstar_web_nhess; dstar_web_other;
+    }
+  }
+
+  /*-- compose groups --*/
+  {
+    node [shape=box3d,style="filled",fillcolor="#b4eeb4"];
+    edge [color="#008b00"];
+
+    dstar_all_nhess;
+    dstar_all_nhess -> dstar_cab_en;
+    dstar_all_nhess -> dstar_ddc_nhess;
+    dstar_all_nhess -> dstar_web_nhess;
+
+    dstar_all_dta;
+    dstar_all_dta -> dstar_cab_dta;
+    dstar_all_dta -> dstar_cab_de;
+    dstar_all_dta -> dstar_ddc_dta;
+    dstar_all_dta -> dstar_web_dta;
+  }
+  
+}

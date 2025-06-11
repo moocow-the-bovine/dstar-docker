@@ -1,0 +1,2 @@
+## File: cpanm.txt
+## Description: perl modules to install via cpanm when building docker image

@@ -1,0 +1,25 @@
+## File: packages.txt
+## Description: apt packages to install when building docker image
+
+apache2
+gnuplot-nox
+libapache2-mod-perl2
+libdatetime-perl
+libdate-calc-perl
+libdbd-sqlite3-perl
+libdbi-perl
+libextutils-xspp-perl
+libfile-chmod-perl
+libfile-copy-recursive-perl
+libforks-perl
+libicu-dev
+libimage-info-perl
+libimage-size-perl
+libparse-yapp-perl
+libperlio-gzip-perl
+libsqlite3-dev
+libtemplate-plugin-json-escape-perl
+libtime-duration-perl
+libtimedate-perl
+pdl
+#libpdl-stats-perl

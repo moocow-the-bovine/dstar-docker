@@ -1,0 +1,25 @@
+## File: cpanm.txt
+## Description: perl modules to install via cpanm when building docker image
+
+-n NetServer::Generic
+
+DDC::Concordance
+DDC::XS
+
+## 2025-06-04: PDL::CCS and PDL::VectorValued have updated PDL requirements: use older versions
+#PDL::CCS
+http://backpan.cpantesters.org/authors/id/M/MO/MOOCOW/PDL-VectorValued-1.0.22.tar.gz
+http://backpan.cpantesters.org/authors/id/M/MO/MOOCOW/PDL-CCS-1.23.22.tar.gz
+
+#PDL::Stats
+http://backpan.cpantesters.org/authors/id/E/ET/ETJ/PDL-Stats-0.76.tar.gz
+
+PDL::SVDLIBC
+
+#PDL::Cluster
+http://backpan.cpantesters.org/authors/id/M/MO/MOOCOW/PDL-Cluster-1.54.003.tar.gz
+
+DiaColloDB
+DiaColloDB::WWW
+
+#Image::Info

@@ -1,0 +1,94 @@
+/*-*- Mode: Groovy; coding: utf-8; -*-*/
+
+//======================================================================
+// libraries & globals
+@Library('dstar-lib') _
+import org.jenkinsci.plugins.pipeline.modeldefinition.Utils
+
+properties([
+    [$class: 'JiraProjectProperty'],
+    parameters([
+		booleanParam(name: 'base',
+			     defaultValue: false, //true,
+			     description: 'build image dstar-base?'),
+		booleanParam(name: 'runhost',
+			     defaultValue: false, //true,
+			     description: 'build+publish image dstar-runhost?'),
+		booleanParam(name: 'webhost',
+			     defaultValue: false, //true,
+			     description: 'build+publish image dstar-webhost?'),
+		booleanParam(name: 'buildhost',
+			     defaultValue: false, //true,
+			     description: 'build+publish image dstar-buildhost?'),
+	    ]),
+	pipelineTriggers([
+		pollSCM(
+		    "TZ=Europe/Berlin\n"
+		    //+ "*" + "/2 * * * *" //-- DEBUG
+		    + "H H(0-5) * * *"
+		)]),
+    ])
+	
+
+//======================================================================
+// utils
+
+def buildOk = {
+    //echo "buildOk(${currentBuild.result})"
+    return currentBuild.resultIsBetterOrEqualTo('FAILURE')
+}
+
+def buildImageStage = {
+    label,enabled,buildParams ->
+    if (buildParams==null) { buildParams=[] }
+    stage(label) {
+	if (!buildOk()) {
+	    dstarLog.info("skipping image \"$label\" due to earlier errors")
+	    Utils.markStageSkippedForConditional(label)
+	} else if (!enabled) {
+	    dstarLog.info("skipping image \"$label\" due to unfulfilled preconditions")
+	    Utils.markStageSkippedForConditional(label)
+	} else {
+	    //-- real dispatch to downstream job
+	    dstarLog.info("${env.JOB_NAME} : build(dstar-${label}, ${buildParams})")
+	    build(job:"./dstar-${label}", parameters:buildParams, propagate:true)
+	}
+    }
+}
+
+//======================================================================
+// MAIN
+
+def subpar = []
+
+node('dstar-docker') {
+    try {
+	//--------------------------------------
+	// "init": initialization
+	stage('init') {
+	    //checkout scm //-- do we really need this here???
+	    dstarLog.info("${env.JOB_NAME} running with parameters = ${params}")
+	}
+    	//--------------------------------------
+	// "IMAGE": build individual images
+	buildImageStage('base', params.base, subpar)
+	buildImageStage('runhost', params.runhost, subpar)
+	buildImageStage('webhost', params.webhost, subpar)
+	buildImageStage('buildhost', params.buildhost, subpar)
+    }
+    catch (err) {
+	//----------------------------------------------------------
+	// FAILURE code
+	echo "EXCEPTION: ${err}"
+	if (buildOk()) { currentBuild.result = 'FAILURE' }
+	throw err
+    }
+    finally {
+	//----------------------------------------------------------
+	// post-actions: notify
+	dstarNotify.notifyX(
+	    mattermost: [ channel: '#moo-jenkins-test'],
+	)
+    }
+}
+

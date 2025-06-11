@@ -1,0 +1,11 @@
+PreferredAuthentications publickey
+StrictHostKeyChecking false
+ForwardX11 false
+
+Host *.bbaw.de *.dwds.de *.zdl.org
+  User ddc
+
+##-- if svn.dwds.de is a DNS alias, you might want to do the following
+##   (but a better solution is to search for stale hostkeys in known_hosts)
+#Host svn.dwds.de
+#  CheckHostIP no

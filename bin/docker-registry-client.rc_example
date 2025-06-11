@@ -1,0 +1,6 @@
+## File: docker-registry-client.rc_example
+## Description: example config-file for docker-registry-client.sh,
+##  for use together with docker-registry-client.netrc_example
+
+export DOCKER_REGISTRY_URL="https://my.docker-registry.org:443"
+export DOCKER_REGISTRY_CURLOPT="--netrc-file $HOME/.docker-registry-client.netrc"

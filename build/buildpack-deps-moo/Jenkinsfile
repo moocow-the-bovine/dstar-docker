@@ -1,0 +1,65 @@
+/*-*- Mode: Groovy; coding: utf-8; -*-*/
+// adapted from https://getintodevops.com/blog/building-your-first-docker-image-with-jenkins-2-guide-for-developers
+pipeline {
+    //def img //-- only allows in (scoped) script{} blocks -- won't work in declarative syntax
+
+    agent any
+    options {
+	//-- abort if any stage fails
+        skipStagesAfterUnstable()
+    }
+    /*
+    parameters {
+        string(name:'imageName', defaultValue:"buildpack-deps-moo", description:'image basename', )
+    }
+     */
+    environment {
+	IMAGE_NAME = 'buildpack-deps-moo'
+    }
+
+    stages {
+	//-- "build": build the project
+	stage('build') {
+	    steps {
+		sh "docker build --progress plain -t '${env.IMAGE_NAME}:${env.BUILD_ID}' -t '${env.IMAGE_NAME}:latest' -f Dockerfile ."
+	    }
+	}
+
+	//-- "export": save the image
+	stage('export') {
+	    steps {
+		sh "docker save '${env.IMAGE_NAME}:${env.BUILD_ID}' | gzip --fast >${env.IMAGE_NAME}.${env.BUILD_ID}.tar.gz"
+	    }
+	}
+
+	//-- "clean": cleanup stale images (integer build-tags only)
+	stage('clean') {
+	    steps {
+		sh "./cleanup.sh -c${env.BUILD_ID} -p1 ${env.IMAGE_NAME}"
+	    }
+	}
+    }
+
+    
+    post {
+	//-- see https://jenkins.io/doc/pipeline/tour/post/
+	always {
+	    echo "Archiving artifacts for build ${env.BUILD_ID}"
+	    archiveArtifacts artifacts: "${env.IMAGE_NAME}.${env.BUILD_ID}.tar.gz", onlyIfSuccessful:true, fingerprint:true
+            //echo 'One way or another, I have finished'
+            deleteDir() //-- clean up our workspace
+	}
+        success {
+            echo 'Pipeline completed successfully :)'
+        }
+        unstable {
+            echo 'Pipeline unstable :/'
+        }
+        failure {
+            echo 'Pipeline FAILED :('
+        }
+        changed {
+            echo 'Piline status CHANGED :P'
+        }
+    }
+}

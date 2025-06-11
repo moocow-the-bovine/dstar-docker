@@ -1,0 +1,26 @@
+## File: packages.txt
+## Description: apt packages to install when building docker image
+
+##-- libc6:i386 - required for fsm-3.7; needs `dpkg --add-architecture i386`
+libc6:i386
+
+##-- xml utils
+expat
+xmlstarlet
+libxml2-utils
+xsltproc
+
+##-- build-time utils
+bc
+sqlite3
+liblchown-perl
+
+##-- sandbox (optional here?)
+docker-ce-cli
+
+##-- curation stuff from Andreas Nolda, for dstar.deps/nolda-xml/
+## + not included in dstar-buildhost image by default
+#mercurial
+#python3
+#python3-blessings
+#python3-lxml

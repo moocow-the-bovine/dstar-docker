@@ -1,0 +1,1 @@
+machine my.docker-registry.org login MyUserName password MyPassword

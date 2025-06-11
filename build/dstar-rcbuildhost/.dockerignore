@@ -1,0 +1,17 @@
+Makefile
+Jenkinsfile
+Jenkinsfile.*
+job.xml
+image.tar.gz
+export.tar.gz
+*.id
+*.stamp
+
+ssh
+dstar
+dstar-web
+snap
+*.tmp
+src
+install
+tagh-generator

@@ -1,0 +1,43 @@
+## File: packages.txt
+## Description: apt packages to install when building docker image
+
+##-- runtime dependencies
+curl
+file
+gawk
+perl
+netcat-openbsd
+procps
+sed
+socat
+sudo
+
+##-- supervisord
+supervisor
+python-pip
+inetutils-syslogd
+
+##-- build dependencies
+autoconf
+autoconf-archive
+automake
+bison
+flex
+g++
+gcc
+libcurl4-gnutls-dev
+libjemalloc-dev
+libpcre3-dev
+libtool
+make
+pkg-config
+
+##-- useful stuff
+joe
+git
+less
+net-tools
+openssh-client
+rsync
+subversion
+datamash

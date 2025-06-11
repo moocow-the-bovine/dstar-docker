@@ -1,0 +1,13 @@
+## File: cpanm.txt
+## Description: perl modules to install via cpanm when building docker image
+
+CDB_File~1.02
+
+Alien::Base::ModuleBuild
+Alien::Build
+HTTP::Daemon::UNIX
+LWP::Protocol::http::SocketUnixAlt
+
+DTA::TokWrap
+GermaNet::Flat
+Lingua::TT

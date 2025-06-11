@@ -1,0 +1,12 @@
+## File: packages.txt
+## Description: apt packages to install when building docker image
+
+##-- for foma
+libreadline-dev
+libncurses-dev
+
+##-- for caberr sync in dstar/resources/build/dta-exlex/eval-corpus/
+wget
+
+##-- for dstar-resources-build.git
+git-lfs
