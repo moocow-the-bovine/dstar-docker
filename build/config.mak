@@ -156,6 +156,21 @@ publish_dst ?= services3.dwds.de:dstar-docker/dist/
 publish_rsync ?= rsync -ulptg --verbose
 
 ##-------------------------------------------------------------
+## Variables: push
+
+## push_prefix : destination prefix for push, INCLUDING trailing "/"
+push_prefix ?= $(if $(repodir),$(repodir),cudmuncher/)
+
+## push_repo : destination basename for push, INCLUDING namespace
+push_repo ?= $(if $(repodir),$(repodir),cudmuncher/)$(repobase)
+
+## push_tags : tags to be pushed
+push_tags ?= $(tagas)
+
+## push_options : options for docker push
+push_options ?= -q
+
+##-------------------------------------------------------------
 ## Variables: dstar
 
 ## dstar_template_idfile : dstar template image-id file

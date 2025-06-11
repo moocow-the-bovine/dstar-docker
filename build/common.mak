@@ -180,6 +180,21 @@ endif
 publish: $(addprefix $(distdir:/=)/,$(distfiles))
 	$(publish_rsync) $^ $(publish_dst)
 
+
+##==============================================================
+## Rules: push
+
+## RECIPE = $(call do_push,SRC,DST)
+define do_push
+	test "$(strip $(1))" = "$(strip $(2))" || docker tag $(strip $(1)) $(strip $(2))$(cr)
+	$(docker) push $(push_options) $(strip $(2))$(cr)
+	test "$(strip $(1))" = "$(strip $(2))" || docker rmi $(strip $(2))$(cr)
+endef
+
+.PHONY: push
+push:
+	$(foreach tag,$(push_tags),$(call do_push,$(repo),$(push_repo):$(tag))$(cr))
+
 ##==============================================================
 ## Rules: ssh config for builds
 ##  + Variant 1: private build stages
