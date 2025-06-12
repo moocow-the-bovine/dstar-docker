@@ -48,6 +48,9 @@ ARG dstar_deps_root=https://svn.code.sf.net/p/ddc-dstar-core/code/deps
 #ARG dstar_deps_include="re2c ln-- mootm"
 ARG dstar_deps_include="fsmtools foma-0.9.17"
 
+## FIXME 2025-06-12: foma-0.9.17 no longer compiles under debian 12 bookworm
+##   (but distro includes apt package foma 1:0.10.0+s311-1)
+
 ##-- dstar/deps packages to build
 ##  + see also output of `make -C dstar/deps packages`
 #ARG dstar_deps_packages="ln-- Algorithm-BinarySearch-Vec Lingua-LTS mootm re2c nolda-xml"

@@ -57,7 +57,10 @@ ARG dstar_deps_include="re2c ln-- mootm"
 
 ##-- dstar/deps packages to build
 ##  + see also output of `make -C dstar/deps packages`
-ARG dstar_deps_packages="ln-- Lingua-LTS mootm re2c nolda-xml"
+#ARG dstar_deps_packages="ln-- Lingua-LTS mootm re2c nolda-xml"
+ARG dstar_deps_packages="ln-- Lingua-LTS mootm re2c"
+
+##-- FIXME 2025-06-12: mootm no longer compiles under debian 12 bookworm (g++ 12.2.0-14)
 
 #RUN --mount=type=ssh
 RUN \

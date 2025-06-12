@@ -82,7 +82,7 @@ RUN \
     set -o xtrace \
     && ${moot_co} \
     && cd moot \
-    && ./autoreconf.sh \    
+    && ./autoreconf.sh \
     && ./configure \
     && make AM_MAKEFLAGS=-j$(nproc) \
     && make check \
