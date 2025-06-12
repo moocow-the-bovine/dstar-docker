@@ -1,6 +1,6 @@
 ##-*- Mode: GNUmakefile; coding: utf-8; -*-
 ##
-## File: docker/Makefile
+## File: docker/build/Makefile
 ## Author: Bryan Jurish <jurish@bbaw.de>
 ## Description: Makefile for docker images: top-level
 
@@ -11,21 +11,13 @@
 include config.mak
 
 ## tasks
-tasks ?= \
-	base \
-	nhess \
-	dta
+tasks ?= base
 
 ## task-wise subdirectories
-base_dirs   = common dstar-base dstar-runhost dstar-webhost
-nhess_dirs = dstar-cab-en dstar-ddc-nhess dstar-web-nhess
-dta_dirs   = dstar-cab-de dstar-cab-dta $(foreach c,dtak dtae dta,dstar-ddc-$(c) dstar-web-$(c))
+base_dirs   = common dstar-base dstar-runhost dstar-webhost dstar-buildhost dstar-rcbuildhost
 
 ## subdirectories
-subdirs ?= \
-	$(base_dirs) \
-	$(nhess_dirs) \
-	$(dta_dirs)
+subdirs ?= $(base_dirs)
 
 ##======================================================================
 ## Rules: top-level
@@ -105,19 +97,6 @@ endef
 
 dstar-runhost/.all: $(call dstar_subdep,dstar-base)
 dstar-webhost/.all: $(call dstar_subdep,dstar-runhost)
-
-dstar-cab-en/.all: $(call dstar_subdep,dstar-base)
-dstar-cab-de/.all: $(call dstar_subdep,dstar-base)
-dstar-cab-dta/.all: $(call dstar_subdep,dstar-base)
-
-dstar-ddc-nhess/.all: $(call dstar_subdep,dstar-base)
-dstar-ddc-dta/.all: $(call dstar_subdep,dstar-base)
-
-dstar-web-nhess/.all: $(call dstar_subdep,dstar-base)
-dstar-web-dta/.all: $(call dstar_subdep,dstar-base)
-
-dstar-all-nhess/.all: $(call dstar_subdep,dstar-webhost dstar-cab-en dstar-ddc-nhess dstar-web-nhess)
-dstar-all-dta/.all: $(call dstar_subdep,dstar-webhost dstar-cab-dta dstar-cab-de dstar-ddc-dta dstar-web-dta)
 
 ##======================================================================
 ## Rules: common

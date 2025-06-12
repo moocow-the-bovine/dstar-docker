@@ -81,7 +81,7 @@ WORKDIR /home/ddc-dstar/dstar
 
 #RUN --mount=type=ssh
 RUN \
-    cachebust=1933 \
+    cachebust=1552 \
     set -o xtrace -o errexit \
     && : -- "update base checkout" \
       && svn up -r${dstar_svnrev} \

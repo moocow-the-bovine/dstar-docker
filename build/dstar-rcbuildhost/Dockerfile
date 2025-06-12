@@ -55,7 +55,7 @@ ARG dstar_deps_packages="fsmtools foma"
 
 #RUN --mount-type=ssh
 RUN \
-    cachebust=1125 \
+    cachebust=1552 \
     && set -o xtrace -o errexit \
     && svn co --ignore-externals --depth=files ${dstar_deps_root} deps \
     && cd deps \

@@ -113,7 +113,7 @@ WORKDIR /home/ddc-dstar/dstar
 ARG dstar_svnrev=HEAD
 #RUN --mount=type=ssh
 RUN \
-    cachebust=1621 \
+    cachebust=1552 \
     set -o xtrace \
     && svn up -r${dstar_svnrev} \
     && ( test -d corpus || svn up -r${dstar_svnrev} --set-depth=files corpus ) \

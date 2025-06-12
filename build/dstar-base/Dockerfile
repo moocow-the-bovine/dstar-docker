@@ -29,7 +29,7 @@ RUN \
     apt-get update && apt-get -y install `grep -v '^#' packages.txt`
 
 RUN \
-    cachebuster=26 \
+    cachebuster=1140 \
     true \
     && : -- "create users, groups" \
       && useradd -m -U -d /home/ddc-dstar ddc \
@@ -56,7 +56,7 @@ ADD ssh /root/.ssh
 WORKDIR /home/ddc-dstar
 #RUN --mount=type=ssh
 RUN \
-    cachebuster=1513 \
+    cachebuster=1546 \
     set -o xtrace \
     && : -- "basic checkout" \
       && svn co -r${dstar_svnrev} ${dstar_svnroot} dstar \

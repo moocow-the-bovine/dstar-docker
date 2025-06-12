@@ -39,7 +39,7 @@ FROM base AS build
 ARG gfsm_co="git clone https://github.com/moocow-the-bovine/gfsm.git gfsm"
 #RUN --mount=type=ssh
 RUN \
-    cachebust=1342 \
+    cachebust=1551 \
     set -o xtrace \
     && ${gfsm_co} \
     && cd gfsm \
