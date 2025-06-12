@@ -96,7 +96,7 @@ RUN \
        && mkdir -p morph/ma-morph-src \
        && ln -sfT ../../src/tagh morph/ma-morph-src/current \
     && : -- "sources: tagh-generator" \
-      && ln -sfT ../src/tagh-generator/tagh-generator.tfst tagh-generator/tagh-generator.tfst \
+      && ln -sfT ../src/tagh-generator/tagh-generator.utf8.tfst tagh-generator/tagh-generator.tfst \
       && ln -sfT ../src/tagh-generator/tagh-generator.utf8.lab tagh-generator/tagh-generator.utf8.lab \
     && : -- "sources: wgetrc (caberr credentials etc)" \
       && ln -sfT src/wgetrc wgetrc
