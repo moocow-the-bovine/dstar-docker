@@ -34,4 +34,5 @@ REALCLEAN_DIRS += ssh
 
 ##==============================================================
 ## Rules: common
+push_tags :=
 include ../common.mak

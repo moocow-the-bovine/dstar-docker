@@ -98,6 +98,8 @@ endef
 
 dstar-runhost/.all: $(call dstar_subdep,dstar-base)
 dstar-webhost/.all: $(call dstar_subdep,dstar-runhost)
+dstar-buildhost/.all: $(call dstar_subdep,dstar-webhost)
+dstar-rcbuildhost/.all: $(call dstar_subdep,dstar-buildhost)
 
 ##======================================================================
 ## Rules: common

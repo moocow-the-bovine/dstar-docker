@@ -20,6 +20,9 @@ repotag  = buster
 ## tagas : post-build tag(s), also default $(disttag)
 #tagas ?= 2017-09-27
 
+## push_tags : tags to be pushed # # # (empty to suppress push)
+push_tags =
+
 ## common configuration
 include ../config.mak
 
