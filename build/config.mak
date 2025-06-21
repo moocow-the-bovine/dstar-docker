@@ -79,7 +79,8 @@ repo ?= $(repopath):$(repotag)
 #tagas ?= 2019-10-16
 #tagas ?= 2020-03-27
 #tagas  ?= 2020-10-05
-tagas  ?= 2025-06-11 latest
+#tagas  ?= 2025-06-11 latest
+tagas  ?= 2025-06-21 latest
 
 ## tagpath : target repo path for `make tag`
 tagpath ?= $(repopath)

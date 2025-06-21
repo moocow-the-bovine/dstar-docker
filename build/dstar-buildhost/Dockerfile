@@ -84,7 +84,7 @@ WORKDIR /home/ddc-dstar/dstar
 
 #RUN --mount=type=ssh
 RUN \
-    cachebust=1552 \
+    cachebust=1724 \
     set -o xtrace -o errexit \
     && : -- "update base checkout" \
       && svn up -r${dstar_svnrev} \
@@ -124,9 +124,11 @@ ENV \
     CABX_PLM="" \
     PUBLISH_USER="ddc-admin" \
     CABRC_RSYNC_USER="ddc" \
+    CABRC_FREE="yes" \
     DWDS_PIWIK="0" \
     \
     dstar_init_hooks="" \
+    dstar_selftest_publish="no" \
     dstar_sync_resources="auto" \
     dstar_sync_rcfiles="" \
     dstar_build_uid="" \

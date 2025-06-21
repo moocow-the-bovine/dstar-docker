@@ -36,6 +36,7 @@ pkg-config
 joe
 git
 less
+lftp
 net-tools
 openssh-client
 rsync

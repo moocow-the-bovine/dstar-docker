@@ -117,6 +117,7 @@ COPY --from=private /dstar/resources/build /dstar/resources/build
 ENV \
   CABRC_INSTALL_ROOT="/dstar/resources/install" \
   CAB_EXLEX_AUTO="no" \
+  CABRC_FREE="no" \
   ner_rsync_from="/dstar/resources/build/src/dta-syncope-ner"
 
 ##-- re-override workdir & command
