@@ -8,6 +8,7 @@
 ## Configuration
 
 ## common configuration
+push_enabled := no
 include config.mak
 
 ## tasks

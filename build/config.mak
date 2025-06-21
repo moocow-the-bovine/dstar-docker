@@ -166,10 +166,13 @@ push_prefix ?= $(if $(repodir),$(repodir),cudmuncher/)
 push_repo ?= $(if $(repodir),$(repodir),cudmuncher/)$(repobase)
 
 ## push_tags : tags to be pushed (empty to suppress push)
-push_tags ?= $(tagas)
+push_tags ?= $(repotag) $(tagas)
 
 ## push_options : options for docker push
 push_options ?= -q
+
+## push_enabled : empty or "no" disables
+push_enabled ?= $(if $(push_tags),yes,no)
 
 ##-------------------------------------------------------------
 ## Variables: dstar

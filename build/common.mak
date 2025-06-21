@@ -193,7 +193,11 @@ endef
 
 .PHONY: push
 push:
+ ifneq ($(subst no,,$(push_enabled)),)
 	$(foreach tag,$(push_tags),$(call do_push,$(repo),$(push_repo):$(tag))$(cr))
+ else
+	: 'fake docker push $(repo) : $(push_tags)'
+ endif
 
 ##==============================================================
 ## Rules: ssh config for builds

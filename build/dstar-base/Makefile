@@ -26,8 +26,8 @@ dockerargs = $(dstar_svnargs)
 ## buildstages : build stages (empty for single-FROM build)
 #buildstages = base private deploy
 
-## push_tags : tags to be pushed (empty to suppress push)
-push_tags =
+## push_enabled : empty or "no" disables
+push_enabled = no
 
 ## common configuration
 include ../config.mak
