@@ -1,0 +1,46 @@
+# syntax=docker/dockerfile:experimental
+
+## IMAGE: dstar-base
+## "syntax=" line is black magic for docker "secrets" support (incl. ssh forwarding)
+
+##======================================================================
+## base: base image (shared)
+FROM dstar-buildhost:latest AS base
+
+##======================================================================
+## min : final image
+FROM scratch AS min
+COPY --from=base / /
+
+##-- dstar environment (defaults)
+ENV \
+    SVN_SSH="/usr/bin/ssh -a -oPreferredAuthentications=publickey -oStrictHostKeyChecking=false" \
+    \
+    TOKWRAP_RCDIR="" \
+    WEB_SERVER_PORT="" \
+    CABX_PLM="" \
+    PUBLISH_USER="ddc-admin" \
+    CABRC_RSYNC_USER="ddc" \
+    CABRC_FREE="yes" \
+    DWDS_PIWIK="0" \
+    \
+    dstar_init_hooks="" \
+    dstar_selftest_publish="no" \
+    dstar_sync_resources="auto" \
+    dstar_sync_rcfiles="" \
+    dstar_build_uid="" \
+    dstar_build_gid="" \
+    dstar_build_umask="002" \
+    dstar_corpora="" \
+    dstar_checkout_corpus_opts="-force -local-config" \
+    dstar_build_sh_opts="-echo-preset=make-info" \
+    dstar_cabx_run="9096" \
+    dstar_relay_conf="/etc/default/dstar-relay"
+
+#dstar_cabx_run="dstar-http-9096.rc dstar-http-dta-8088.rc dstar-http-dta-9099.rc dstar-http-en-9097.rc dstar-http-taghx-9098.rc"
+#dstar_cabx_run="9096 dta-8088 dta-9099 en-9097 taghx-9098"
+#dstar_relay_conf="/dstar/docker/relay/cabx-all.rc"
+#dstar_archive_dir="/dstar/archive"
+
+##-- re-override command
+CMD ["./docker/build"]

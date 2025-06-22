@@ -1,0 +1,30 @@
+# syntax=docker/dockerfile:experimental
+
+## IMAGE: dstar-base
+## "syntax=" line is black magic for docker "secrets" support (incl. ssh forwarding)
+
+##======================================================================
+## base: base image (shared)
+FROM dstar-base:latest AS base
+
+##======================================================================
+## min : final image
+FROM scratch AS min
+COPY --from=base / /
+
+##-- common environment
+ENV \
+  LANG=C.UTF-8 \
+  LC_ALL=C.UTF-8 \
+  PATH=/dstar/bin:/dstar/script:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
+  HOST=docker \
+  dstar_svnroot="${dstar_svnroot}" \
+  dstar_svnrev="${dstar_svnrev}" \
+  dstar_init_hooks="" \
+  dstar_init_conf=""
+
+##-- supervisord http gui port
+EXPOSE 9001
+
+WORKDIR /home/ddc-dstar/dstar
+CMD ["./docker/main"]
