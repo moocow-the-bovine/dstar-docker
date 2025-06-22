@@ -1,3 +1,4 @@
 scm=git
 tagversion=$(date +%F)
-tagprefix=v
+tagbase=-
+tagprefix=-
