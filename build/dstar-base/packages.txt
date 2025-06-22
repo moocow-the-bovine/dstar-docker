@@ -5,6 +5,7 @@
 curl
 file
 gawk
+iproute2
 perl
 netcat-openbsd
 procps

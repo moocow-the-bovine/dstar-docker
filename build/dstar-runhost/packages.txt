@@ -49,6 +49,7 @@ libshell-config-generate-perl
 libshell-guess-perl
 libsort-versions-perl
 libtemplate-perl
+libterm-table-perl
 libtest-fatal-perl
 libtest-deep-perl
 libtest-simple-perl

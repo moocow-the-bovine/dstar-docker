@@ -102,6 +102,7 @@ COPY etc/ /etc/
 ENV \
   LANG=C.UTF-8 \
   LC_ALL=C.UTF-8 \
+  PATH=/dstar/bin:/dstar/script:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
   HOST=docker \
   dstar_svnroot="${dstar_svnroot}" \
   dstar_svnrev="${dstar_svnrev}" \

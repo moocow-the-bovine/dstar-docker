@@ -116,7 +116,6 @@ RUN usermod -a -G ddc-admin root
 
 ##-- dstar environment (defaults)
 ENV \
-    PATH=/dstar/bin:/dstar/script:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
     SVN_SSH="/usr/bin/ssh -a -oPreferredAuthentications=publickey -oStrictHostKeyChecking=false" \
     \
     TOKWRAP_RCDIR="" \

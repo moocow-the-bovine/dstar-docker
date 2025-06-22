@@ -24,7 +24,7 @@ RUN cachebuster=1309 \
 
 ##-- cpanm dependencies
 COPY cpanm.txt .
-RUN cachebuster=1249 \
+RUN cachebuster=1950 \
     grep -v '^#' cpanm.txt \
     | while read m ; do \
         test -n "$m" || continue; \
