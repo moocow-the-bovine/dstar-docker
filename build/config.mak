@@ -82,13 +82,16 @@ repo ?= $(repopath):$(repotag)
 #tagas  ?= 2025-06-11 latest
 #tagas  ?= 2025-06-21 latest
 #--
-tagas  ?= bookworm latest
+tagas  ?= 2025-06-22 bookworm latest
 
 ## tagpath : target repo path for `make tag`
 tagpath ?= $(repopath)
 
 ## tagrepos : target REPO:TAG(s) for `make tag`
 tagrepos ?= $(addprefix $(tagpath):,$(tagas) $(if $(filter $(disttag),$(tagas)),,$(disttag)))
+
+## tag_enabled : empty or "no" disables
+tag_enabled ?= $(if $(tagas),yes,no)
 
 ##-------------------------------------------------------------
 ## Variables: docker build

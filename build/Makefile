@@ -9,6 +9,7 @@
 
 ## common configuration
 push_enabled := no
+tag_enabled := no
 include config.mak
 
 ## tasks
@@ -83,6 +84,7 @@ $(call alias_template,$(1),dist)
 $(call alias_template,$(1),dist-import)
 $(call alias_template,$(1),dist-export)
 $(call alias_template,$(1),push)
+$(call alias_template,$(1),tag)
 $(call alias_template,$(1),prune)
 $(call alias_template,$(1),clean)
 $(call alias_template,$(1),cleaner)

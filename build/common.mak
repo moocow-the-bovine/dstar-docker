@@ -114,7 +114,11 @@ con.id: img.id
 tag-force: tag
 tag:
 	$(foreach rtag,$(tagrepos),\
-	  $(docker) tag "$(repo)" "$(rtag)"$(cr))
+	  $(if $(subst no,,$(tag_enabled)),\
+        $(docker) tag "$(repo)" "$(rtag)",\
+	    @: 'fake docker tag $(repo):$(rtag)'\
+       )$(cr))
+
 
 ##==============================================================
 ## Rules: save (image.tar.gz), dist ($(distdir)/$(project)-$(version).image.tar.gz)
@@ -193,11 +197,11 @@ endef
 
 .PHONY: push
 push:
- ifneq ($(subst no,,$(push_enabled)),)
-	$(foreach tag,$(push_tags),$(call do_push,$(repo),$(push_repo):$(tag))$(cr))
- else
-	: 'fake docker push $(repo) : $(push_tags)'
- endif
+	$(foreach tag,$(push_tags),\
+	  $(if $(subst no,,$(push_enabled)),\
+	    $(call do_push,$(repo),$(push_repo):$(tag)),\
+	    @: 'fake docker push $(repo) -> $(push_repo):$(tag)'\
+       )$(cr))
 
 ##==============================================================
 ## Rules: ssh config for builds
