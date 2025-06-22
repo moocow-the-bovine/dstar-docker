@@ -14,7 +14,7 @@ sudo
 
 ##-- supervisord
 supervisor
-python-pip
+python3-pip
 inetutils-syslogd
 
 ##-- build dependencies

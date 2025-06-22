@@ -2,9 +2,10 @@
 ## Description: apt packages to install when building docker image
 
 cpanminus
+gettext
 libarchive-extract-perl
 libcapture-tiny-perl
-#libcdb-file-perl	# 2020-08-25: debian/buster has CDB_File v0.99, but we need >= v1.02
+libcdb-file-perl
 libcgi-pm-perl
 libclass-inspector-perl
 libenv-path-perl
@@ -62,8 +63,4 @@ libxml-libxslt-perl
 libxml-parser-perl
 libyaml-libyaml-perl
 perl
-
-##-- buster fixes
 perl-modules
-gettext
-

@@ -5,7 +5,7 @@
 
 ##======================================================================
 ## base: base image (shared)
-FROM debian:buster AS base
+FROM debian:bookworm AS base
 
 ##-- build arguments
 ARG dstar_svnroot=https://svn.code.sf.net/p/ddc-dstar-core/code/ddc-dstar/trunk
@@ -18,12 +18,12 @@ ENV SVN_SSH="/usr/bin/ssh -A -oPreferredAuthentications=publickey -oStrictHostKe
 ##-- labels (may be clobbered by command-line options to `docker build`; see ../Makefile)
 LABEL \
   dstar-docker.project.maintainer="moocow@cudmuncher.de" \
-  dstar-docker.project.id="dstar-base:buster" \
+  dstar-docker.project.id="dstar-base:bookworm" \
   dstar-docker.project.description="dstar base image: common dependencies"
 
 ##-- apt dependencies
 WORKDIR /usr/src/dstar-base
-COPY sources.list /etc/apt/
+#COPY sources.list /etc/apt/
 COPY packages.txt .
 RUN \
     apt-get update && apt-get -y install `grep -v '^#' packages.txt`
@@ -81,7 +81,11 @@ RUN make -C dstar/init install
 ##-- supervisor-stdout : supervisord plugin to dump logs to stdout
 RUN \
     cachebuster=1413 \
-    pip install supervisor-stdout
+    set -o xtrace \
+    && : "-- Ignore PEP 668 because it's silly" \
+       && rm -f /usr/lib/python*/EXTERNALLY-MANAGED \
+    && : "-- install supervisor-stdout from git because the PyPI version is stale" \
+       && pip install 'supervisor-stdout @ git+https://github.com/coderanger/supervisor-stdout'
 
 COPY \
      docker-supervisor/ README.supervisor \

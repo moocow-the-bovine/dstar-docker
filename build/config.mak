@@ -80,7 +80,9 @@ repo ?= $(repopath):$(repotag)
 #tagas ?= 2020-03-27
 #tagas  ?= 2020-10-05
 #tagas  ?= 2025-06-11 latest
-tagas  ?= 2025-06-21 latest
+#tagas  ?= 2025-06-21 latest
+#--
+tagas  ?= bookworm latest
 
 ## tagpath : target repo path for `make tag`
 tagpath ?= $(repopath)
@@ -166,7 +168,7 @@ push_prefix ?= $(if $(repodir),$(repodir),cudmuncher/)
 push_repo ?= $(if $(repodir),$(repodir),cudmuncher/)$(repobase)
 
 ## push_tags : tags to be pushed (empty to suppress push)
-push_tags ?= $(repotag) $(tagas)
+push_tags ?= $(sort $(repotag) $(tagas))
 
 ## push_options : options for docker push
 push_options ?= -q

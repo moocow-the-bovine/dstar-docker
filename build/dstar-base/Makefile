@@ -8,7 +8,7 @@
 ## DEBUG overrides
 
 repobase = dstar-base
-repotag  = buster
+repotag  = bookworm
 #buildsquash :=
 
 ##==============================================================

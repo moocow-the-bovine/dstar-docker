@@ -8,7 +8,7 @@
 ## DEBUG
 
 #repobase = dstar-rcbuildhost
-repotag  = buster
+repotag  = bookworm
 #buildsquash :=
 
 ##==============================================================

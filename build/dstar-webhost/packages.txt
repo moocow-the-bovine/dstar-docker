@@ -22,4 +22,6 @@ libtemplate-plugin-json-escape-perl
 libtime-duration-perl
 libtimedate-perl
 pdl
-#libpdl-stats-perl
+libpdl-stats-perl
+libpdl-ccs-perl
+libpdl-vectorvalued-perl

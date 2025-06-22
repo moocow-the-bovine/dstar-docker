@@ -12,7 +12,7 @@ ARG dstar_svnrev=HEAD
 ##-- labels (may be clobbered by command-line options to `docker build`; see ../Makefile)
 LABEL \
   dstar-docker.maintainer="moocow@cudmuncher.de" \
-  dstar-docker.project.id="dstar-buildhost:buster" \
+  dstar-docker.project.id="dstar-buildhost:bookworm" \
   dstar-docker.project.description="dstar RUNHOST+WEBHOST+BUILDHOST image"
 
 ##-- additional sources

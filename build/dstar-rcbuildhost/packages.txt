@@ -1,12 +1,13 @@
 ## File: packages.txt
 ## Description: apt packages to install when building docker image
 
-##-- for foma
+##-- foma
 libreadline-dev
 libncurses-dev
+foma
 
 ##-- for caberr sync in dstar/resources/build/dta-exlex/eval-corpus/
 wget
 
-##-- for dstar-resources-build.git
+##-- for dstar-resources-build.git (UNUSED)
 git-lfs

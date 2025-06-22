@@ -12,7 +12,7 @@ ARG dstar_svnrev=HEAD
 ##-- labels (may be clobbered by command-line options to `docker build`; see ../Makefile)
 LABEL \
   dstar-docker.maintainer="moocow@cudmuncher.de" \
-  dstar-docker.project.id="dstar-rcbuildhost:buster" \
+  dstar-docker.project.id="dstar-rcbuildhost:bookworm" \
   dstar-docker.project.description="dstar RUNHOST+WEBHOST+BUILDHOST+CABRC_BUILDHOST image"
 
 ##-- apt dependencies
@@ -46,19 +46,18 @@ ARG dstar_deps_root=https://svn.code.sf.net/p/ddc-dstar-core/code/deps
 ##-- fsmtools
 #ARG dstar_deps_include=fsmtools re2c nolda-xml
 #ARG dstar_deps_include="re2c ln-- mootm"
-ARG dstar_deps_include="fsmtools foma-0.9.17"
-
-## FIXME 2025-06-12: foma-0.9.17 no longer compiles under debian 12 bookworm
-##   (but distro includes apt package foma 1:0.10.0+s311-1)
+#ARG dstar_deps_include="fsmtools foma-0.9.17"
+ARG dstar_deps_include="fsmtools"
 
 ##-- dstar/deps packages to build
 ##  + see also output of `make -C dstar/deps packages`
 #ARG dstar_deps_packages="ln-- Algorithm-BinarySearch-Vec Lingua-LTS mootm re2c nolda-xml"
-ARG dstar_deps_packages="fsmtools foma"
+#ARG dstar_deps_packages="fsmtools foma"
+ARG dstar_deps_packages="fsmtools"
 
 #RUN --mount-type=ssh
 RUN \
-    cachebust=1552 \
+    cachebust=1442 \
     && set -o xtrace -o errexit \
     && svn co --ignore-externals --depth=files ${dstar_deps_root} deps \
     && cd deps \

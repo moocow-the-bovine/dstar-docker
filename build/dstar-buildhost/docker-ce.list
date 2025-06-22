@@ -2,5 +2,5 @@
 ## + see https://docs.docker.com/v17.09/engine/installation/linux/docker-ce/debian/#set-up-the-repository
 ## + add apt key: curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 
-deb [arch=amd64] https://download.docker.com/linux/debian buster stable
-# deb-src [arch=amd64] https://download.docker.com/linux/debian buster stable
+deb [arch=amd64] https://download.docker.com/linux/debian bookworm stable
+# deb-src [arch=amd64] https://download.docker.com/linux/debian bookworm stable
